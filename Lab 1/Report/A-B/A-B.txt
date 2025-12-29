@@ -1,0 +1,16 @@
+>> P = [0, 1, 0];
+>> [N1, N2, N3] = cart2sph(0, 1, 0);
+>> syms x y z ;
+>> A = [-3*(y^2), -2*x, z];
+>> S1 = subs(A, [x, y, z], P);
+>> B = [7, -5, 8];
+>> M = [sin((pi/2)-N2)*cos(N1), sin((pi/2)-N2)*sin(N1), cos((pi/2)-N2); cos((pi/2)-N2)*cos(N1), cos((pi/2)-N2)*sin(N1), -sin((pi/2)-N2); -sin(N1), cos(N1), 0];
+>> S2 = M * B'; 
+>> S = S1 - S2.';
+>> S 
+ 
+S =
+ 
+[2, 8, 7]
+ 
+>> 

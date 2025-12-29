@@ -1,0 +1,34 @@
+>> k = 8.988e9 ; 
+>> A = [0, 0];
+>> B = [0.7, 0];
+>> C = [0, 0.24];
+>> Q1 = -3e-9;
+>> Q2 = 7e-9;
+>> Q3 = 10e-9;
+>> Force = @(r1, r2, q1, q2) k*q1*q2*(r1-r2) / norm(r1-r2)^3 ;
+>> F1_B = Force(A, B, Q1, Q2);
+>> F1_C = Force(A, C, Q1, Q3);
+>> F1 = F1_B + F1_C;
+>> F2_A = Force(B, A, Q2, Q1);
+>> F2_C = Force(B, C, Q2, Q3);
+>> F2 = F2_A + F2_C;
+>> F3_A = Force(C, A, Q3, Q1);
+>> F3_B = Force(C, B, Q3, Q2);
+>> F3 = F3_A + F3_B;
+>> figure ('Color','W');
+>> hold on; grid on; axis equal;
+>> title('2D Electrostatic Forces Between Three Charges','FontSize',14);
+>> xlabel('X-axis (m)'), ylabel('Y-axis (m)');
+>> plot(A(1),A(2),'ro','MarkerSize',10,'MarkerFaceColor','r');
+>> plot(B(1),B(2),'bo','MarkerSize',10,'MarkerFaceColor','b');
+>> plot(C(1),C(2),'go','MarkerSize',10,'MarkerFaceColor','g');
+>> plot([A(1) B(1)], [A(2) B(2)], 'W', 'LineWidth', 3);
+>> plot([A(1) C(1)], [A(2) C(2)], 'W', 'LineWidth', 3);
+>> plot([B(1) C(1)], [B(2) C(2)], 'W--', 'LineWidth', 3);
+>> scale = 1e7;
+>> quiver(A(1),A(2), F1(1),F1(2), scale, 'r','LineWidth', 2);
+>> quiver(B(1),B(2), F2(1),F2(2), scale, 'b','LineWidth', 2);
+>> quiver(C(1),C(2), F3(1),F3(2), scale, 'g','LineWidth', 2);
+legend('q1 at A','q2 at B','q3 at C', ...
+       'Triangle sides','Force on q1','Force on q2','Force on q3', ...
+       'Location','bestoutside');

@@ -1,0 +1,5 @@
+>> A= [1, 3, 4];
+>> [B_x, B_y, B_z] = sph2cart(deg2rad(90), deg2rad(90-180), 5);
+>> X = A(1) + B_x ; 
+>> Y = A(2) + B_y ; 
+>> Z = A(3) + B_z ; 
